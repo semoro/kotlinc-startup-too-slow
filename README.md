@@ -62,12 +62,14 @@ We could tolerate a maximum of about 2 seconds to compile and run a hello world 
 
 Here are some timings for various Kotlin and JDK versions.
 
+Note that Kotlin 1.3.50 is significantly faster (without the sandbox) than the later versions I tested.
+
 ```
 Kotlin version 1.7.0-Beta-release-135 (JRE 11.0.12+7): 4.324s (no sandbox), 11.682s (sandbox)
 Kotlin version 1.6.21-release-334 (JRE 18.0.1+10):     7.741s (no sandbox), 15.236s (sandbox)
 Kotlin version 1.6.21-release-334 (JRE 11.0.12+7):     3.542s (no sandbox), 11.533s (sandbox)
 Kotlin version 1.6.10-release-923 (JRE 11.0.12+7):     3.546s (no sandbox), 13.079s (sandbox)
-Kotlin version 1.3.50-release-112 (JRE 11.0.12+7):     2.704s (no sandbox), 12.210s (sandbox). This is significantly better without the sandbox!
+Kotlin version 1.3.50-release-112 (JRE 11.0.12+7):     2.704s (no sandbox), 12.210s (sandbox).
 
 JRE 18.0.1+10 image: eclipse-temurin:18.0.1_10-jdk-alpine
 JRE 11.0.12+7 image: adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.12_7-slim
