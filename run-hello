@@ -1,0 +1,1 @@
+time /rootfs/usr/bin/run-kotlin - foo bar < hello.kt

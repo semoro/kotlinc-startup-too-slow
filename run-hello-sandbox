@@ -1,0 +1,1 @@
+time run-in-sandbox /usr/bin/run-kotlin - foo bar < hello.kt
