@@ -74,3 +74,9 @@ Kotlin version 1.3.50-release-112 (JRE 11.0.12+7):     2.704s (no sandbox), 12.2
 JRE 18.0.1+10 image: eclipse-temurin:18.0.1_10-jdk-alpine
 JRE 11.0.12+7 image: adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.12_7-slim
 ```
+
+Update:
+After adding the following line to the Dockerfile, running the code in the sandbox takes the same amount of time as running it outside the sandbox.
+```Dockerfile
+RUN unzip -j /kotlinc/lib/kotlin-compiler.jar  META-INF/native/linux64/libjansi.so -d /lib/
+```

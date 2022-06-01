@@ -19,6 +19,8 @@ RUN curl -L https://github.com/JetBrains/kotlin/releases/download/v1.6.21/kotlin
 
 RUN unzip kotlin.zip
 
+RUN unzip -j /kotlinc/lib/kotlin-compiler.jar  META-INF/native/linux64/libjansi.so -d /lib/
+
 COPY run-in-sandbox.c /
 COPY run-kotlin.c /
 RUN gcc -o /usr/bin/run-in-sandbox -s -static run-in-sandbox.c
