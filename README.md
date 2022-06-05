@@ -72,5 +72,5 @@ info: kotlinc-jvm 1.3.30 (JRE 1.8.0_181-jdk_2018_10_12_13_00-b00)
 To run with strace:
 ```
 bash-5.1# strace -f -v -s 100 kotlinc/bin/kotlinc hello.kt
-bash-5.1# run-in-sandbox strace kotlinc/bin/kotlinc hello.kt
+bash-5.1# run-in-sandbox strace -f -v -s 100 kotlinc/bin/kotlinc hello.kt
 ```
