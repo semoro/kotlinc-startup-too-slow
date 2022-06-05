@@ -64,6 +64,7 @@ COPY --from=0 /lib64                    /rootfs/lib64
 COPY run-hello /
 COPY run-hello-sandbox /
 COPY hello.kt /
+COPY hello.kt /rootfs/
 
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/jdk/openjdk/bin
 

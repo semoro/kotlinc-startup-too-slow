@@ -31,9 +31,6 @@ real	0m0.882s
 user	0m0.726s
 sys	0m0.187s
 
-real	0m3.672s
-user	0m6.959s
-sys	0m0.428s
 bash-5.1# ./run-hello-sandbox 
 COMPILER EXITED
 Hello, World!
@@ -55,6 +52,25 @@ real	0m5.901s
 user	0m6.275s
 sys	0m0.187s
 
-bash-5.1# run-kotlin --version
-Kotlin version 1.3.30-release-170 (JRE 11.0.12+7)
+bash-5.1# time kotlinc/bin/kotlinc hello.kt
+
+real	0m0.774s
+user	0m0.586s
+sys	0m0.177s
+
+bash-5.1# time run-in-sandbox kotlinc/bin/kotlinc hello.kt
+
+real	0m5.914s
+user	0m6.223s
+sys	0m0.282s
+
+
+bash-5.1# kotlinc/bin/kotlinc -version
+info: kotlinc-jvm 1.3.30 (JRE 1.8.0_181-jdk_2018_10_12_13_00-b00)
+```
+
+To run with strace:
+```
+bash-5.1# strace -f -v -s 100 kotlinc/bin/kotlinc hello.kt
+bash-5.1# run-in-sandbox strace kotlinc/bin/kotlinc hello.kt
 ```
