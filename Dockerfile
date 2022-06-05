@@ -8,18 +8,14 @@ RUN mkdir /empty
 # /dev/urandom & /etc/passwd may be needed.
 RUN mkdir /mydev /myetc        \
  && mknod -m 444 /mydev/urandom c 1 9 \
- && echo nobody:x:99:99::/: > /myetc/passwd
+ && echo nobody:x:0:99::/: > /myetc/passwd
 
 RUN apk add --no-cache curl unzip bash strace build-base linux-headers
 
-# RUN curl -L https://github.com/JetBrains/kotlin/releases/download/v1.7.0-Beta/kotlin-compiler-1.7.0-Beta.zip > kotlin.zip
-RUN curl -L https://github.com/JetBrains/kotlin/releases/download/v1.6.21/kotlin-compiler-1.6.21.zip > kotlin.zip
-# RUN curl -L https://github.com/JetBrains/kotlin/releases/download/v1.3.50/kotlin-compiler-1.3.50.zip > kotlin.zip
-# RUN curl -L https://github.com/JetBrains/kotlin/releases/download/build-1.0.0/kotlin-compiler-1.0.0.zip > kotlin.zip
+RUN curl -L https://github.com/JetBrains/kotlin/releases/download/v1.3.30/experimental-kotlin-compiler-linux-x64.zip > kotlin.zip
 
 RUN unzip kotlin.zip
-
-RUN unzip -j /kotlinc/lib/kotlin-compiler.jar  META-INF/native/linux64/libjansi.so -d /lib/
+RUN cp /kotlinc/lib/annotations-13.0.jar /kotlinc/bin/
 
 COPY run-in-sandbox.c /
 COPY run-kotlin.c /
@@ -47,6 +43,7 @@ COPY --from=0 /kotlinc/lib              /kotlinc/lib
 COPY --from=0 /opt/java                 /opt/jdk
 COPY --from=0 /mydev                    /rootfs/dev
 COPY --from=0 /myetc                    /rootfs/etc
+COPY --from=0 /myetc                    /etc
 COPY --from=0 /empty                    /proc
 COPY --from=0 /empty                    /tmp
 COPY --from=0 /bin                      /bin
