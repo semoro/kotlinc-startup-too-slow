@@ -13,9 +13,13 @@ RUN mkdir /mydev /myetc        \
 RUN apk add --no-cache curl unzip bash strace build-base linux-headers
 
 RUN curl -L https://github.com/JetBrains/kotlin/releases/download/v1.3.30/experimental-kotlin-compiler-linux-x64.zip > kotlin.zip
+RUN curl -L https://github.com/JetBrains/kotlin/releases/download/v1.3.30/kotlin-compiler-1.3.30.zip > java-kotlinc.zip
 
 RUN unzip kotlin.zip
 RUN cp /kotlinc/lib/annotations-13.0.jar /kotlinc/bin/
+RUN unzip java-kotlinc.zip -d java-kotlinc
+RUN unzip -p java-kotlinc/kotlinc/lib/kotlin-compiler.jar META-INF/native/linux64/libjansi.so > /kotlinc/bin/rt/lib/amd64/libjansi64-1.3.30-release-170.so
+RUN chmod u=rwx,g=rwx,o=rw /kotlinc/bin/rt/lib/amd64/libjansi64-1.3.30-release-170.so
 
 COPY run-in-sandbox.c /
 COPY run-kotlin.c /
